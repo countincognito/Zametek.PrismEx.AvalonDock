@@ -10,7 +10,7 @@ namespace Zametek.PrismEx.AvalonDock
             return obj.GetAvalonDockAnchorableAttribute() != null;
         }
 
-        public static AnchorableStrategies GetAnchorableStrategy(this object obj)
+        public static AnchorableStrategy GetAnchorableStrategy(this object obj)
         {
             if (obj == null)
             {
@@ -22,6 +22,20 @@ namespace Zametek.PrismEx.AvalonDock
                 throw new InvalidOperationException();
             }
             return avalonDockAnchorableAttribute.Strategy;
+        }
+
+        public static bool GetAnchorableIsHidden(this object obj)
+        {
+            if (obj == null)
+            {
+                throw new ArgumentNullException("obj");
+            }
+            var avalonDockAnchorableAttribute = obj.GetAvalonDockAnchorableAttribute();
+            if (avalonDockAnchorableAttribute == null)
+            {
+                throw new InvalidOperationException();
+            }
+            return avalonDockAnchorableAttribute.IsHidden;
         }
 
         public static AvalonDockAnchorableAttribute GetAvalonDockAnchorableAttribute(this object obj)

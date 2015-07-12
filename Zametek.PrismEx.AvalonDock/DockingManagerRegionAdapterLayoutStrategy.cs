@@ -46,27 +46,32 @@ namespace Zametek.PrismEx.AvalonDock
                 if (anchorableToShow.Root == null)
                 {
                     anchorableToShow.AddToLayout(layout.Manager, GetContentAnchorableStrategy(anchorableToShow));
+                    bool isHidden = GetContentAnchorableIsHidden(anchorableToShow);
+                    if (isHidden)
+                    {
+                        anchorableToShow.CanHide = true;
+                        anchorableToShow.Hide();
+                    }
                     result = true;
                 }
-                else
-                    if (destPane != null && anchorableToShow.IsHidden)
+                else if (destPane != null && anchorableToShow.IsHidden)
+                {
+                    // Show a hidden Anchorable.
+                    if (anchorableToShow.PreviousContainerIndex < 0)
                     {
-                        // Show a hidden Anchorable.
-                        if (anchorableToShow.PreviousContainerIndex < 0)
-                        {
-                            destPane.Children.Add(anchorableToShow);
-                        }
-                        else
-                        {
-                            int insertIndex = anchorableToShow.PreviousContainerIndex;
-                            if (insertIndex > destPane.ChildrenCount)
-                            {
-                                insertIndex = destPane.ChildrenCount;
-                            }
-                            destPane.Children.Insert(insertIndex, anchorableToShow);
-                        }
-                        result = true;
+                        destPane.Children.Add(anchorableToShow);
                     }
+                    else
+                    {
+                        int insertIndex = anchorableToShow.PreviousContainerIndex;
+                        if (insertIndex > destPane.ChildrenCount)
+                        {
+                            insertIndex = destPane.ChildrenCount;
+                        }
+                        destPane.Children.Insert(insertIndex, anchorableToShow);
+                    }
+                    result = true;
+                }
             }
             return result || m_WrappedStrategy.BeforeInsertAnchorable(layout, anchorableToShow, destinationContainer);
         }
@@ -78,40 +83,59 @@ namespace Zametek.PrismEx.AvalonDock
 
         #endregion
 
+        private static bool GetContentAnchorableIsHidden(LayoutAnchorable anchorable)
+        {
+            if (anchorable == null)
+            {
+                return false;
+            }
+            if (anchorable.IsAnchorable())
+            {
+                return anchorable.GetAnchorableIsHidden();
+            }
+            else if (anchorable.Content.IsAnchorable())
+            {
+                return anchorable.Content.GetAnchorableIsHidden();
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
+        }
+
         private static AnchorableShowStrategy GetContentAnchorableStrategy(LayoutAnchorable anchorable)
         {
-            var anchorableStrategy = AnchorableStrategies.Most;
+            var anchorableStrategy = AnchorableStrategy.Most;
             if (anchorable != null)
             {
                 if (anchorable.IsAnchorable())
                 {
                     anchorableStrategy = anchorable.GetAnchorableStrategy();
                 }
+                else if (anchorable.Content.IsAnchorable())
+                {
+                    anchorableStrategy = anchorable.Content.GetAnchorableStrategy();
+                }
                 else
-                    if (anchorable.Content.IsAnchorable())
-                    {
-                        anchorableStrategy = anchorable.Content.GetAnchorableStrategy();
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException();
-                    }
+                {
+                    throw new InvalidOperationException();
+                }
             }
 
             AnchorableShowStrategy flag = 0;
-            foreach (AnchorableStrategies strategyFlag in SplitAnchorableStrategies(anchorableStrategy))
+            foreach (AnchorableStrategy strategyFlag in SplitAnchorableStrategies(anchorableStrategy))
             {
                 var strategy = AnchorableShowStrategy.Most;
                 strategyFlag.ValueSwitchOn()
-                   .Case(AnchorableStrategies.Most,
+                   .Case(AnchorableStrategy.Most,
                          x => strategy = AnchorableShowStrategy.Most)
-                   .Case(AnchorableStrategies.Left,
+                   .Case(AnchorableStrategy.Left,
                          x => strategy = AnchorableShowStrategy.Left)
-                   .Case(AnchorableStrategies.Right,
+                   .Case(AnchorableStrategy.Right,
                          x => strategy = AnchorableShowStrategy.Right)
-                   .Case(AnchorableStrategies.Top,
+                   .Case(AnchorableStrategy.Top,
                          x => strategy = AnchorableShowStrategy.Top)
-                   .Case(AnchorableStrategies.Bottom,
+                   .Case(AnchorableStrategy.Bottom,
                          x => strategy = AnchorableShowStrategy.Bottom)
                    .Default(x =>
                    {
@@ -126,10 +150,10 @@ namespace Zametek.PrismEx.AvalonDock
             return flag;
         }
 
-        private static AnchorableStrategies[] SplitAnchorableStrategies(AnchorableStrategies strategy)
+        private static AnchorableStrategy[] SplitAnchorableStrategies(AnchorableStrategy strategy)
         {
-            var returnArray = new List<AnchorableStrategies>();
-            foreach (var value in Enum.GetValues(typeof(AnchorableStrategies)).Cast<AnchorableStrategies>())
+            var returnArray = new List<AnchorableStrategy>();
+            foreach (var value in Enum.GetValues(typeof(AnchorableStrategy)).Cast<AnchorableStrategy>())
             {
                 if (strategy.HasFlag(value))
                 {

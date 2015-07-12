@@ -3,7 +3,7 @@
 namespace Zametek.PrismEx.AvalonDock
 {
     [Flags]
-    public enum AnchorableStrategies
+    public enum AnchorableStrategy
     {
         Most = 1 << 0,
         Left = 1 << 1,

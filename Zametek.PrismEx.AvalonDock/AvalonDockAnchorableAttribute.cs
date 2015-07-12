@@ -6,7 +6,13 @@ namespace Zametek.PrismEx.AvalonDock
     public sealed class AvalonDockAnchorableAttribute
        : Attribute
     {
-        public AnchorableStrategies Strategy
+        public AnchorableStrategy Strategy
+        {
+            get;
+            set;
+        }
+
+        public bool IsHidden
         {
             get;
             set;
