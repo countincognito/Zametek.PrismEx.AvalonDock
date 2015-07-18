@@ -12,7 +12,7 @@ namespace Zametek.PrismEx.AvalonDock.TestApp
     {
         #region Fields
 
-        private string m_Title;
+        private string m_Name;
 
         #endregion
 
@@ -30,12 +30,21 @@ namespace Zametek.PrismEx.AvalonDock.TestApp
         {
             get
             {
-                return m_Title;
+                return Name;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return m_Name;
             }
             private set
             {
-                m_Title = value;
+                m_Name = value;
                 OnPropertyChanged(() => Title);
+                OnPropertyChanged(() => Name);
             }
         }
 
@@ -45,6 +54,15 @@ namespace Zametek.PrismEx.AvalonDock.TestApp
 
         bool INavigationAware.IsNavigationTarget(NavigationContext navigationContext)
         {
+            if (navigationContext == null)
+            {
+                throw new ArgumentNullException("navigationContext");
+            }
+            var name = navigationContext.Parameters["Name"] as string;
+            if (!string.IsNullOrEmpty(name))
+            {
+                return string.Compare(name, Name, StringComparison.OrdinalIgnoreCase) == 0;
+            }
             return false;
         }
 
@@ -58,7 +76,7 @@ namespace Zametek.PrismEx.AvalonDock.TestApp
             {
                 throw new ArgumentNullException("navigationContext");
             }
-            Title = navigationContext.Parameters["Name"] as string;
+            Name = navigationContext.Parameters["Name"] as string;
         }
 
         #endregion
