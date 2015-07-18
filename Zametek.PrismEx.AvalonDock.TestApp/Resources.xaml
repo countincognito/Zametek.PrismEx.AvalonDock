@@ -37,16 +37,4 @@
                        TextTrimming="CharacterEllipsis" />
         </StackPanel>
     </DataTemplate>
-
-    <!--<DataTemplate DataType="{x:Type local:LeftAnchorableVM}">
-        <Grid Background="Blue"/>
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type local:BottomAnchorableViewModel}">
-        <Grid Background="Green"/>
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type local:RightAnchorableVM}">
-        <Grid Background="Red"/>
-    </DataTemplate>-->
 </ResourceDictionary>
