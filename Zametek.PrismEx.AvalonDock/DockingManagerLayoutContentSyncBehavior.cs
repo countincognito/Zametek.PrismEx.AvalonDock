@@ -75,13 +75,25 @@ namespace Zametek.PrismEx.AvalonDock
         /// </summary>
         protected override void OnAttach()
         {
-            if (m_DockingManager == null
-               || BindingOperations.GetBinding(HostControl, DockingManager.DocumentsSourceProperty) != null
-               || BindingOperations.GetBinding(HostControl, DockingManager.AnchorablesSourceProperty) != null
-               || m_DockingManager.DocumentsSource != null
-               || m_DockingManager.AnchorablesSource != null)
+            if (m_DockingManager == null)
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("DockingManager is not defined");
+            }
+            if (m_DockingManager.DocumentsSource != null)
+            {
+                throw new InvalidOperationException("DocumentsSource must be null");
+            }
+            if (m_DockingManager.AnchorablesSource != null)
+            {
+                throw new InvalidOperationException("AnchorablesSource must be null");
+            }
+            if (BindingOperations.GetBinding(m_DockingManager, DockingManager.DocumentsSourceProperty) != null)
+            {
+                throw new InvalidOperationException("DocumentsSource must not be bound to anything");
+            }
+            if (BindingOperations.GetBinding(m_DockingManager, DockingManager.AnchorablesSourceProperty) != null)
+            {
+                throw new InvalidOperationException("AnchorablesSource must not be bound to anything");
             }
 
             SynchronizeItems();
