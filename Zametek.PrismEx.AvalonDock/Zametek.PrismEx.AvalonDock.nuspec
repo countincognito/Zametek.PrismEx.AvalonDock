@@ -9,7 +9,7 @@
         <projectUrl>https://github.com/countincognito/Zametek.PrismEx.AvalonDock</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Zametek Prism extensions for Xceed AvalonDock.</description>
-        <copyright>Copyright (C) 2015 Riccardo M. Bennett-Lovsey</copyright>
+        <copyright>Copyright (c) 2015 Riccardo M. Bennett-Lovsey</copyright>
         <dependencies>
             <group targetFramework=".NETFramework4.5">
                 <dependency id="Zametek.Utility" version="1.0.4.0" />
