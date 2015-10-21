@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Prism.Regions.Behaviors;
+﻿using Prism.Regions;
+using Prism.Regions.Behaviors;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;

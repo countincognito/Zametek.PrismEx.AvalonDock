@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.Regions;
+﻿using Prism.Mvvm;
+using Prism.Regions;
 using System.ComponentModel.Composition;
 
 namespace Zametek.PrismEx.AvalonDock.TestApp

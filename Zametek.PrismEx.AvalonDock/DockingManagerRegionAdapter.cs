@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Prism.Regions;
+﻿using Prism.Regions;
 using System;
 using Xceed.Wpf.AvalonDock;
 using Xceed.Wpf.AvalonDock.Layout;

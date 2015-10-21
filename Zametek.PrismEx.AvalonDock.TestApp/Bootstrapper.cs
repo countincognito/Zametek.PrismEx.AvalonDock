@@ -1,7 +1,7 @@
-﻿using Microsoft.Practices.Prism.MefExtensions;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
+using Prism.Mef;
+using Prism.Modularity;
+using Prism.Regions;
 using System;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
