@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Riccardo M. Bennett-Lovsey")]
 [assembly: AssemblyProduct("Zametek.PrismEx.AvalonDock")]
-[assembly: AssemblyCopyright("Copyright (C) 2015")]
+[assembly: AssemblyCopyright("Copyright (c) 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
