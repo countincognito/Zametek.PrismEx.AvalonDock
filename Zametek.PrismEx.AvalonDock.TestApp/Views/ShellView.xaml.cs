@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Prism.PubSubEvents;
+﻿using Prism.Events;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
@@ -15,7 +15,6 @@ namespace Zametek.PrismEx.AvalonDock.TestApp
         private readonly LeftAnchorableView m_LeftAnchorableView;
         private readonly BottomAnchorableView m_BottomAnchorableView;
         private readonly RightAnchorableView m_RightAnchorableView;
-        private readonly IEventAggregator m_EventService;
 
         #endregion
 

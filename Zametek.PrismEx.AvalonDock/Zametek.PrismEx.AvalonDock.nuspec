@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Zametek.PrismEx.AvalonDock</id>
+        <version>$version$</version>
+        <authors>countincognito</authors>
+        <owners>countincognito</owners>
+        <licenseUrl>https://github.com/countincognito/Zametek.PrismEx.AvalonDock/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/countincognito/Zametek.PrismEx.AvalonDock</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Zametek Prism extensions for Xceed AvalonDock.</description>
+        <copyright>Copyright (C) 2015 Riccardo M. Bennett-Lovsey</copyright>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="Zametek.Utility" version="1.0.4.0" />
+                <dependency id="Zametek.WindowsEx.AvalonDock" version="1.0.3.0" />
+                <dependency id="Extended.Wpf.Toolkit" version="2.5" />
+                <dependency id="Prism.Wpf" version="6.1.0" />
+            </group>
+        </dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="PresentationCore" targetFramework=".NETFramework4.0" />
+            <frameworkAssembly assemblyName="PresentationFramework" targetFramework=".NETFramework4.0" />
+            <frameworkAssembly assemblyName="WindowsBase" targetFramework=".NETFramework4.0" />
+            <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
+            <frameworkAssembly assemblyName="System.Xaml" targetFramework=".NETFramework4.0" />
+        </frameworkAssemblies>
+    </metadata>
+</package>
