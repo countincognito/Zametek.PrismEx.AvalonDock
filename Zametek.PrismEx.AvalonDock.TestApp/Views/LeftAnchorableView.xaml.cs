@@ -3,8 +3,6 @@ using System.ComponentModel.Composition;
 
 namespace Zametek.PrismEx.AvalonDock.TestApp
 {
-    [Export]
-    [PartCreationPolicy(CreationPolicy.Shared)]
     [AvalonDockAnchorable(Strategy = AnchorableStrategy.Left, IsHidden = true)]
     public partial class LeftAnchorableView
     {

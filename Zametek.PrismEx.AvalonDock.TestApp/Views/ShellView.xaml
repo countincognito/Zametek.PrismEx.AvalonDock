@@ -4,7 +4,7 @@
         xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:local="clr-namespace:Zametek.PrismEx.AvalonDock.TestApp"
         xmlns:prism="http://www.codeplex.com/prism"
-        Title="Test Shell" Height="500" Width="750">
+        Title="Test Shell" Height="600" Width="850">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -29,31 +29,128 @@
                          VerticalContentAlignment="Center"
                          Text="{Binding Path=NewDocumentName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </DockPanel>
+
             <DockPanel DockPanel.Dock="Top"
                        Margin="0,7,0,0">
-                <Button Content="Left Anchorable"
+                <Button Content="Show Left Anchorable (View)"
                         DockPanel.Dock="Left"
                         Height="23"
-                        Width="100"
+                        Width="250"
                         VerticalContentAlignment="Center"
                         HorizontalContentAlignment="Center"
-                        Click="ShowLeftAnchorableButton_Click"/>
+                        Click="ShowLeftAnchorableButtonView_Click"/>
                 <Button Margin="7,0,0,0"
-                        Content="Bottom Anchorable"
+                        Content="Show Bottom Anchorable (View)"
                         DockPanel.Dock="Left"
                         Height="23"
-                        Width="125"
+                        Width="250"
                         VerticalContentAlignment="Center"
                         HorizontalContentAlignment="Center"
-                        Click="ShowBottomAnchorableButton_Click"/>
+                        Click="ShowBottomAnchorableButtonView_Click"/>
                 <Button Margin="7,0,0,0"
-                        Content="Right Anchorable"
+                        Content="Show Right Anchorable (View)"
                         DockPanel.Dock="Left"
                         Height="23"
-                        Width="110"
+                        Width="250"
                         VerticalContentAlignment="Center"
                         HorizontalContentAlignment="Center"
-                        Click="ShowRightAnchorableButton_Click"/>
+                        Click="ShowRightAnchorableButtonView_Click"/>
+                <Grid />
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Top"
+                       Margin="0,7,0,0">
+                <Button Content="Show Left Anchorable (ViewModel)"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="ShowLeftAnchorableButtonViewModel_Click"/>
+                <Button Margin="7,0,0,0"
+                        Content="Show Bottom Anchorable (ViewModel)"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="ShowBottomAnchorableButtonViewModel_Click"/>
+                <Button Margin="7,0,0,0"
+                        Content="Show Right Anchorable (ViewModel)"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="ShowRightAnchorableButtonViewModel_Click"/>
+                <Grid />
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Top"
+                       Margin="0,7,0,0">
+                <Button Content="Hide Left Anchorable (View)"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="HideLeftAnchorableButtonView_Click"/>
+                <Button Margin="7,0,0,0"
+                        Content="Hide Bottom Anchorable (View)"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="HideBottomAnchorableButtonView_Click"/>
+                <Button Margin="7,0,0,0"
+                        Content="Hide Right Anchorable (View)"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="HideRightAnchorableButtonView_Click"/>
+                <Grid />
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Top"
+                       Margin="0,7,0,0">
+                <Button Content="Hide Left Anchorable (ViewModel)"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="HideLeftAnchorableButtonViewModel_Click"/>
+                <Button Margin="7,0,0,0"
+                        Content="Hide Bottom Anchorable (ViewModel)"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="HideBottomAnchorableButtonViewModel_Click"/>
+                <Button Margin="7,0,0,0"
+                        Content="Hide Right Anchorable (ViewModel)"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="HideRightAnchorableButtonViewModel_Click"/>
+                <Grid />
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Top"
+                       Margin="0,7,0,0">
+                <Button Content="Close All Documents"
+                        DockPanel.Dock="Left"
+                        Height="23"
+                        Width="250"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Click="CloseAllDocuments_Click"/>
                 <Grid />
             </DockPanel>
         </DockPanel>
@@ -64,6 +161,7 @@
                                    AnchorableTitleTemplate="{StaticResource AnchorableTitleTemplate}"
                                    DocumentHeaderTemplate="{StaticResource DocumentHeaderTemplate}"
                                    AnchorableHeaderTemplate="{StaticResource AnchorableHeaderTemplate}"
-                                   DocumentPaneMenuItemHeaderTemplate="{StaticResource DocumentHeaderTemplate}" />
+                                   DocumentPaneMenuItemHeaderTemplate="{StaticResource DocumentHeaderTemplate}">
+        </avalonDock:DockingManager>
     </DockPanel>
 </Window>

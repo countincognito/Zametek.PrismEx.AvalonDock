@@ -1,11 +1,8 @@
 ﻿using Prism.Mvvm;
 using Prism.Regions;
-using System.ComponentModel.Composition;
 
 namespace Zametek.PrismEx.AvalonDock.TestApp
 {
-    [Export]
-    [PartCreationPolicy(CreationPolicy.Shared)]
     public sealed class RightAnchorableViewModel
        : BindableBase, INavigationAware
     {

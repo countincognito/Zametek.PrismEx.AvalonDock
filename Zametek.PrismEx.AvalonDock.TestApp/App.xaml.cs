@@ -1,90 +1,42 @@
-﻿using System;
+﻿using Prism.Ioc;
+using Prism.Modularity;
+using Prism.Regions;
+using Prism.Unity;
 using System.Windows;
+using Xceed.Wpf.AvalonDock;
 
 namespace Zametek.PrismEx.AvalonDock.TestApp
 {
     public partial class App
-        : IDisposable
+        : PrismApplication
     {
-        #region Fields
-
-        private readonly Bootstrapper m_Bootstrapper;
-        private bool m_Disposed;
-
-        #endregion
-
-        #region Ctors
-
-        public App()
+        protected override Window CreateShell()
         {
-            m_Bootstrapper = new Bootstrapper();
+            return Container.Resolve<ShellView>();
         }
 
-        #endregion
-
-        #region Private Methods
-
-        private void RunApplication()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            AppDomain.CurrentDomain.UnhandledException += AppDomainUnhandledException;
-            try
-            {
-                m_Bootstrapper.Run();
-            }
-            catch (Exception ex)
-            {
-                Bootstrapper.HandleException(ex);
-            }
+            containerRegistry.RegisterSingleton<BottomAnchorableView>();
+            containerRegistry.RegisterForNavigation<DocumentView>("DocumentView");
+            containerRegistry.RegisterSingleton<LeftAnchorableView>();
+            containerRegistry.RegisterSingleton<RightAnchorableView>();
+            containerRegistry.RegisterSingleton<ShellView>();
         }
 
-        private static void AppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            Bootstrapper.HandleException(e.ExceptionObject as Exception);
+            moduleCatalog.AddModule<TestAppModule>();
         }
 
-        #endregion
-
-        #region Overrides
-
-        protected override void OnStartup(StartupEventArgs e)
+        protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
-            base.OnStartup(e);
-            RunApplication();
-            ShutdownMode = ShutdownMode.OnMainWindowClose;
+            base.ConfigureRegionAdapterMappings(regionAdapterMappings);
+
+
+            
+            regionAdapterMappings.RegisterMapping(typeof(SelectorRegionAdapter), Container.Resolve<SelectorRegionAdapter>());
+            regionAdapterMappings.RegisterMapping(typeof(DockingManager), Container.Resolve<DockingManagerRegionAdapter>());
         }
-
-        protected override void OnExit(ExitEventArgs e)
-        {
-            base.OnExit(e);
-        }
-
-        #endregion
-
-        #region IDisposable
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (m_Disposed)
-            {
-                return;
-            }
-            if (disposing)
-            {
-                // Free any other managed objects here. 
-                m_Bootstrapper.Dispose();
-            }
-
-            // Free any unmanaged objects here. 
-
-            m_Disposed = true;
-        }
-
-        #endregion
     }
 }

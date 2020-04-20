@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Xceed.Wpf.AvalonDock.Layout;
-using Zametek.Utility;
 
 namespace Zametek.PrismEx.AvalonDock
 {
@@ -126,21 +124,27 @@ namespace Zametek.PrismEx.AvalonDock
             foreach (AnchorableStrategy strategyFlag in SplitAnchorableStrategies(anchorableStrategy))
             {
                 var strategy = AnchorableShowStrategy.Most;
-                strategyFlag.ValueSwitchOn()
-                   .Case(AnchorableStrategy.Most,
-                         x => strategy = AnchorableShowStrategy.Most)
-                   .Case(AnchorableStrategy.Left,
-                         x => strategy = AnchorableShowStrategy.Left)
-                   .Case(AnchorableStrategy.Right,
-                         x => strategy = AnchorableShowStrategy.Right)
-                   .Case(AnchorableStrategy.Top,
-                         x => strategy = AnchorableShowStrategy.Top)
-                   .Case(AnchorableStrategy.Bottom,
-                         x => strategy = AnchorableShowStrategy.Bottom)
-                   .Default(x =>
-                   {
-                       throw new InvalidEnumArgumentException("Unknown AnchorableStrategy value");
-                   });
+
+                switch (strategyFlag)
+                {
+                    case AnchorableStrategy.Most:
+                        strategy = AnchorableShowStrategy.Most;
+                        break;
+                    case AnchorableStrategy.Left:
+                        strategy = AnchorableShowStrategy.Left;
+                        break;
+                    case AnchorableStrategy.Right:
+                        strategy = AnchorableShowStrategy.Right;
+                        break;
+                    case AnchorableStrategy.Top:
+                        strategy = AnchorableShowStrategy.Top;
+                        break;
+                    case AnchorableStrategy.Bottom:
+                        strategy = AnchorableShowStrategy.Bottom;
+                        break;
+                    default:
+                        throw new InvalidOperationException("Unknown AnchorableStrategy value");
+                }
                 flag |= strategy;
             }
             if (flag == 0)

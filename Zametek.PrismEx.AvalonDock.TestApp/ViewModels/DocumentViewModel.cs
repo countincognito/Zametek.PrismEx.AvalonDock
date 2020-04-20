@@ -1,12 +1,9 @@
 ﻿using Prism.Mvvm;
 using Prism.Regions;
 using System;
-using System.ComponentModel.Composition;
 
 namespace Zametek.PrismEx.AvalonDock.TestApp
 {
-    [Export]
-    [PartCreationPolicy(CreationPolicy.NonShared)]
     public sealed class DocumentViewModel
        : BindableBase, INavigationAware
     {

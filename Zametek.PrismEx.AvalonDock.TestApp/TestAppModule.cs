@@ -1,44 +1,29 @@
-﻿using Prism.Mef.Modularity;
+﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-using System;
-using System.ComponentModel.Composition;
 
 namespace Zametek.PrismEx.AvalonDock.TestApp
 {
-    [ModuleExport(typeof(TestAppModule))]
     public class TestAppModule
        : IModule
     {
-        #region Fields
-
-        private readonly IRegionManager m_RegionManager;
-
-        #endregion
-
-        #region Ctors
-
-        [ImportingConstructor]
-        public TestAppModule(IRegionManager regionManager)
+        public void OnInitialized(IContainerProvider containerProvider)
         {
-            if (regionManager == null)
-            {
-                throw new ArgumentNullException("regionManager");
-            }
-            m_RegionManager = regionManager;
+            var regionManager = containerProvider.Resolve<IRegionManager>();
+
+            IRegion mainregion = regionManager.Regions["MainRegion"];
+            var bottomAnchorableView = containerProvider.Resolve<BottomAnchorableView>();
+            mainregion.Add(bottomAnchorableView);
+
+            var rightAnchorableView = containerProvider.Resolve<RightAnchorableView>();
+            mainregion.Add(rightAnchorableView);
+
+            var leftAnchorableView = containerProvider.Resolve<LeftAnchorableView>();
+            mainregion.Add(leftAnchorableView);
         }
 
-        #endregion
-
-        #region IModule Members
-
-        public void Initialize()
+        public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            m_RegionManager.RegisterViewWithRegion("MainRegion", typeof(BottomAnchorableView));
-            m_RegionManager.RegisterViewWithRegion("MainRegion", typeof(RightAnchorableView));
-            m_RegionManager.RegisterViewWithRegion("MainRegion", typeof(LeftAnchorableView));
         }
-
-        #endregion
     }
 }

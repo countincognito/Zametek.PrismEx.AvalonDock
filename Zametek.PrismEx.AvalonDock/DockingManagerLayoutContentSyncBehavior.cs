@@ -27,11 +27,7 @@ namespace Zametek.PrismEx.AvalonDock
 
         public DockingManagerLayoutContentSyncBehavior(DockingManager dockingManager)
         {
-            if (dockingManager == null)
-            {
-                throw new ArgumentNullException("dockingManager");
-            }
-            m_DockingManager = dockingManager;
+            m_DockingManager = dockingManager ?? throw new ArgumentNullException(nameof(dockingManager));
         }
 
         public DependencyObject HostControl

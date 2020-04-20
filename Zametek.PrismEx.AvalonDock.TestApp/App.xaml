@@ -1,3 +1,4 @@
-﻿<Application x:Class="Zametek.PrismEx.AvalonDock.TestApp.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"/>
+﻿<prism:PrismApplication x:Class="Zametek.PrismEx.AvalonDock.TestApp.App"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:prism="http://prismlibrary.com/"/>

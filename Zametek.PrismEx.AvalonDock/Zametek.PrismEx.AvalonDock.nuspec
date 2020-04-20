@@ -2,20 +2,21 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Zametek.PrismEx.AvalonDock</id>
-        <version>$version$</version>
+        <version>1.1.0</version>
         <authors>countincognito</authors>
         <owners>countincognito</owners>
         <licenseUrl>https://github.com/countincognito/Zametek.PrismEx.AvalonDock/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/countincognito/Zametek.PrismEx.AvalonDock</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Zametek Prism extensions for Xceed AvalonDock.</description>
-        <copyright>Copyright (c) 2015 Riccardo M. Bennett-Lovsey</copyright>
+        <description>Zametek Prism extensions for Xceed AvalonDock. This package is now obsolete, please use Zametek.Prism.AvalonDock.Core instead.</description>
+        <copyright>Copyright (c) 2020 Riccardo M. Bennett-Lovsey</copyright>
         <dependencies>
-            <group targetFramework=".NETFramework4.5">
-                <dependency id="Zametek.Utility" version="1.0.4.0" />
-                <dependency id="Zametek.WindowsEx.AvalonDock" version="1.0.3.0" />
-                <dependency id="Extended.Wpf.Toolkit" version="2.5" />
-                <dependency id="Prism.Wpf" version="6.1.0" />
+            <group targetFramework=".NETFramework4.6.2">
+                <dependency id="CommonServiceLocator" version="2.0.5" />
+                <dependency id="Extended.Wpf.Toolkit" version="3.6.0" />
+                <dependency id="Prism.Core" version="7.2.0.1422" />
+                <dependency id="Prism.Wpf" version="7.2.0.1422" />
+                <dependency id="System.ValueTuple" version="4.5.0" />
             </group>
         </dependencies>
         <frameworkAssemblies>

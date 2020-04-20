@@ -7,7 +7,6 @@ using System.ComponentModel.Composition;
 
 namespace Zametek.PrismEx.AvalonDock.TestApp
 {
-    [Export]
     public class ShellViewModel
         : BindableBase
     {

@@ -1,13 +1,10 @@
-﻿using Prism.Events;
-using System;
+﻿using System;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Windows;
 using Zametek.WindowsEx.AvalonDock;
 
 namespace Zametek.PrismEx.AvalonDock.TestApp
 {
-    [Export]
     public partial class ShellView
     {
         #region Fields
@@ -20,38 +17,16 @@ namespace Zametek.PrismEx.AvalonDock.TestApp
 
         #region Ctors
 
-        [ImportingConstructor]
         public ShellView(
             LeftAnchorableView leftAnchorableView,
             BottomAnchorableView bottomAnchorableView,
             RightAnchorableView rightAnchorableView,
-            ShellViewModel viewModel,
-            IEventAggregator eventService)
+            ShellViewModel viewModel)
         {
-            if (leftAnchorableView == null)
-            {
-                throw new ArgumentNullException("leftAnchorableView");
-            }
-            if (bottomAnchorableView == null)
-            {
-                throw new ArgumentNullException("bottomAnchorableView");
-            }
-            if (rightAnchorableView == null)
-            {
-                throw new ArgumentNullException("rightAnchorableView");
-            }
-            if (viewModel == null)
-            {
-                throw new ArgumentNullException("viewModel");
-            }
-            if (eventService == null)
-            {
-                throw new ArgumentNullException("eventService");
-            }
-            m_LeftAnchorableView = leftAnchorableView;
-            m_BottomAnchorableView = bottomAnchorableView;
-            m_RightAnchorableView = rightAnchorableView;
-            ViewModel = viewModel;
+            m_LeftAnchorableView = leftAnchorableView ?? throw new ArgumentNullException(nameof(leftAnchorableView));
+            m_BottomAnchorableView = bottomAnchorableView ?? throw new ArgumentNullException(nameof(bottomAnchorableView));
+            m_RightAnchorableView = rightAnchorableView ?? throw new ArgumentNullException(nameof(rightAnchorableView));
+            ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
             InitializeComponent();
         }
 
@@ -73,44 +48,145 @@ namespace Zametek.PrismEx.AvalonDock.TestApp
 
         #endregion
 
-        #region ShowLeftAnchorable
+        #region LeftAnchorable
 
-        private void ShowLeftAnchorableButton_Click(object sender, RoutedEventArgs e)
+        private void ShowLeftAnchorableButtonView_Click(object sender, RoutedEventArgs e)
         {
-            ShowLeftAnchorable();
+            ShowLeftAnchorableView();
         }
 
-        private void ShowLeftAnchorable()
+        private void ShowLeftAnchorableView()
         {
-            DockManager.ShowAnchorable(m_LeftAnchorableView);
+            DockManager.ShowAnchorable(m_LeftAnchorableView, setAsActiveContent: true);
+        }
+
+        private void ShowLeftAnchorableButtonViewModel_Click(object sender, RoutedEventArgs e)
+        {
+            ShowLeftAnchorableViewModel();
+        }
+
+        private void ShowLeftAnchorableViewModel()
+        {
+            DockManager.ShowAnchorable(m_LeftAnchorableView.ViewModel, setAsActiveContent: true);
+        }
+
+
+        private void HideLeftAnchorableButtonView_Click(object sender, RoutedEventArgs e)
+        {
+            HideLeftAnchorableView();
+        }
+
+        private void HideLeftAnchorableView()
+        {
+            DockManager.HideAnchorable(m_LeftAnchorableView, removeAsActiveContent: true);
+        }
+
+        private void HideLeftAnchorableButtonViewModel_Click(object sender, RoutedEventArgs e)
+        {
+            HideLeftAnchorableViewModel();
+        }
+
+        private void HideLeftAnchorableViewModel()
+        {
+            DockManager.HideAnchorable(m_LeftAnchorableView.ViewModel, removeAsActiveContent: true);
         }
 
         #endregion
 
-        #region ShowBottomAnchorable
+        #region BottomAnchorable
 
-        private void ShowBottomAnchorableButton_Click(object sender, RoutedEventArgs e)
+        private void ShowBottomAnchorableButtonView_Click(object sender, RoutedEventArgs e)
         {
-            ShowBottomAnchorable();
+            ShowBottomAnchorableView();
         }
 
-        private void ShowBottomAnchorable()
+        private void ShowBottomAnchorableView()
         {
-            DockManager.ShowAnchorable(m_BottomAnchorableView);
+            DockManager.ShowAnchorable(m_BottomAnchorableView, setAsActiveContent: true);
+        }
+
+        private void ShowBottomAnchorableButtonViewModel_Click(object sender, RoutedEventArgs e)
+        {
+            ShowBottomAnchorableViewModel();
+        }
+
+        private void ShowBottomAnchorableViewModel()
+        {
+            DockManager.ShowAnchorable(m_BottomAnchorableView.ViewModel, setAsActiveContent: true);
+        }
+
+
+        private void HideBottomAnchorableButtonView_Click(object sender, RoutedEventArgs e)
+        {
+            HideBottomAnchorableView();
+        }
+
+        private void HideBottomAnchorableView()
+        {
+            DockManager.HideAnchorable(m_BottomAnchorableView, removeAsActiveContent: true);
+        }
+
+        private void HideBottomAnchorableButtonViewModel_Click(object sender, RoutedEventArgs e)
+        {
+            HideBottomAnchorableViewModel();
+        }
+
+        private void HideBottomAnchorableViewModel()
+        {
+            DockManager.HideAnchorable(m_BottomAnchorableView.ViewModel, removeAsActiveContent: true);
         }
 
         #endregion
 
-        #region ShowRightAnchorable
+        #region RightAnchorable
 
-        private void ShowRightAnchorableButton_Click(object sender, RoutedEventArgs e)
+        private void ShowRightAnchorableButtonView_Click(object sender, RoutedEventArgs e)
         {
-            ShowRightAnchorable();
+            ShowRightAnchorableView();
         }
 
-        private void ShowRightAnchorable()
+        private void ShowRightAnchorableView()
         {
-            DockManager.ShowAnchorable(m_RightAnchorableView);
+            DockManager.ShowAnchorable(m_RightAnchorableView, setAsActiveContent: true);
+        }
+
+        private void ShowRightAnchorableButtonViewModel_Click(object sender, RoutedEventArgs e)
+        {
+            ShowRightAnchorableViewModel();
+        }
+
+        private void ShowRightAnchorableViewModel()
+        {
+            DockManager.ShowAnchorable(m_RightAnchorableView.ViewModel, setAsActiveContent: true);
+        }
+
+        private void HideRightAnchorableButtonView_Click(object sender, RoutedEventArgs e)
+        {
+            HideRightAnchorableView();
+        }
+
+        private void HideRightAnchorableView()
+        {
+            DockManager.HideAnchorable(m_RightAnchorableView, removeAsActiveContent: true);
+        }
+
+        private void HideRightAnchorableButtonViewModel_Click(object sender, RoutedEventArgs e)
+        {
+            HideRightAnchorableViewModel();
+        }
+
+        private void HideRightAnchorableViewModel()
+        {
+            DockManager.HideAnchorable(m_RightAnchorableView.ViewModel, removeAsActiveContent: true);
+        }
+
+        #endregion
+
+        #region CloseAllDocuments
+
+        private void CloseAllDocuments_Click(object sender, RoutedEventArgs e)
+        {
+            DockManager.CloseAllDocuments();
         }
 
         #endregion

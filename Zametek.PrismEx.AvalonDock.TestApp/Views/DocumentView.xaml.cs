@@ -3,8 +3,6 @@ using System.ComponentModel.Composition;
 
 namespace Zametek.PrismEx.AvalonDock.TestApp
 {
-    [Export("DocumentView")]
-    [PartCreationPolicy(CreationPolicy.NonShared)]
     public partial class DocumentView
     {
         #region Ctors
